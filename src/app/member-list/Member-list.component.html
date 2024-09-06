@@ -1,50 +1,64 @@
-<!-- src/app/member-list/member-list.component.html -->
 <div class="main-container">
   <h2>Member Directory</h2>
 
-  <!-- Search box -->
-  <input
-    type="text"
-    placeholder="Search by name"
-    (input)="onSearchChange($event)"
-    [(ngModel)]="searchTerm"
-  />
+  <!-- Search box with icon -->
+  <div class="search-bar">
+    <i class="fas fa-search"></i>
+    <input
+      type="text"
+      placeholder="Search by name"
+      (input)="onSearchChange($event)"
+      [(ngModel)]="searchTerm"
+    />
+  </div>
 
-  <!-- Filter by membership status dropdown -->
-  <label for="membershipStatus">Filter by Membership Status:</label>
-  <select
-    id="membershipStatus"
-    (change)="onFilterChange('membershipStatus', $event)"
-  >
-    <option value="">All</option>
-    <option
-      *ngFor="let status of filterOptions.membershipStatus"
-      [value]="status"
-    >
-      {{ status }}
-    </option>
-  </select>
+  <!-- Filter Icon and Panel -->
+  <div class="filter-section">
+    <button class="filter-button" (click)="toggleFilterPanel()">
+      <i class="fas fa-filter"></i> Filters
+    </button>
+    <div class="filter-panel" *ngIf="isFilterPanelOpen">
+      <label>Filter by Membership Status:</label>
+      <div *ngFor="let status of filterOptions.membershipStatus">
+        <input
+        class="checkbox"
+          type="checkbox"
+          [value]="status"
+          (change)="onCheckboxChange('membershipStatus', $event)"
+        />
+        {{ status }}
+      </div>
 
-  <!-- Filter by subscription type dropdown -->
-  <label for="subscriptionType">Filter by Subscription Type:</label>
-  <select
-    id="subscriptionType"
-    (change)="onFilterChange('subscriptionType', $event)"
-  >
-    <option value="">All</option>
-    <option *ngFor="let type of filterOptions.subscriptionType" [value]="type">
-      {{ type }}
-    </option>
-  </select>
-  <Label for="invoiceStatus">Filter by Invoice Status:</Label>
-  <select id="invoiceStatus" (change)="onFilterChange('invoiceStatus', $event)">
-    <option value="">All</option>
-    <option *ngFor="let status of filterOptions.invoiceStatus" [value]="status">
-      {{ status }}
-    </option>
-  </select>
+      <label>Filter by Subscription Type:</label>
+      <div *ngFor="let type of filterOptions.subscriptionType">
+        <input
+        class="checkbox"
+          type="checkbox"
+          [value]="type"
+          (change)="onCheckboxChange('subscriptionType', $event)"
+        />
+        {{ type }}
+      </div>
 
-  <!-- Display active filters as tags -->
+      <label>Filter by Invoice Status:</label>
+      <div *ngFor="let status of filterOptions.invoiceStatus">
+        <input
+        class="checkbox"
+          type="checkbox"
+          [value]="status"
+          (change)="onCheckboxChange('invoiceStatus', $event)"
+        />
+        {{ status }}
+      </div>
+
+      <div class="filter-buttons">
+        <button (click)="toggleFilterPanel()">Search</button>
+        <button (click)="clearAllFilters()">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active filters tags -->
   <div
     *ngIf="
       activeFilters['membershipStatus'] ||
@@ -73,21 +87,7 @@
     <button (click)="clearAllFilters()">Clear All</button>
   </div>
 
-  <!-- Filtered member list -->
-  <!-- <ul>
-    <li *ngFor="let member of filteredMembers">
-      <a [routerLink]="[member.id]">{{ member.name }}</a>
-      <div class="status">
-        <span
-          [ngClass]="{
-            active: member.membershipStatus === 'Active',
-            inactive: member.membershipStatus === 'Inactive'
-          }"
-          >{{ member.membershipStatus }}</span
-        >
-      </div>
-    </li>
-  </ul> -->
+  <!-- Member list -->
   <div class="main-content">
     <ul>
       <li *ngFor="let member of filteredMembers">

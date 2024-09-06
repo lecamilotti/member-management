@@ -1,4 +1,3 @@
-// src/app/member-list/member-list.component.ts
 import { Component } from '@angular/core';
 import { MemberService, Member } from '../member.service';
 import { CommonModule } from '@angular/common'; // For *ngIf, *ngFor
@@ -13,13 +12,12 @@ import { RouterModule } from '@angular/router'; // For routerLink
   styleUrls: ['./member-list.component.css'],
 })
 export class MemberListComponent {
-  [x: string]: any | string;
   members: Member[] = [];
   filteredMembers: Member[] = [];
   searchTerm: string = '';
+  isFilterPanelOpen: boolean = false; // Initialize as false
 
-
-  // Filter options for membership status and subscription type
+  // Filter options
   filterOptions = {
     membershipStatus: ['Active', 'Inactive'],
     subscriptionType: ['Monthly', 'Annual'],
@@ -28,39 +26,44 @@ export class MemberListComponent {
 
   // Active filters
   activeFilters: { [key: string]: string | undefined } = {};
-  details: any | string;
-  outlets: any | string;
 
   constructor(private memberService: MemberService) {
     this.members = this.memberService.getMembers();
     this.filteredMembers = [...this.members];
   }
 
-  // Apply search and active filters to filter the members
+  // Apply search and filters to filter the members
   applyFilters(): void {
     this.filteredMembers = this.members.filter((member) => {
-      const matchesStatus = this.activeFilters['membershipStatus']
-        ? member.membershipStatus === this.activeFilters['membershipStatus']
-        : true;
-      const matchesSubscription = this.activeFilters['subscriptionType']
-        ? member.subscriptionType === this.activeFilters['subscriptionType']
-        : true;
-      const matchesPaidInvoice = this.activeFilters['invoiceStatus']
-        ? member.invoices.some((invoice) => invoice.status === 'Paid')
-        : true;
-      const matchesUnpaidInvoice = this.activeFilters['invoiceStatus']
-        ? member.invoices.some((invoice) => invoice.status === 'Pending')
+      const { membershipStatus, subscriptionType, invoiceStatus } =
+        this.activeFilters;
+
+      // Filter by membership status
+      const matchesStatus = membershipStatus
+        ? member.membershipStatus === membershipStatus
         : true;
 
+      // Filter by subscription type
+      const matchesSubscription = subscriptionType
+        ? member.subscriptionType === subscriptionType
+        : true;
+
+      // Filter by invoice status
+      const matchesInvoiceStatus = invoiceStatus
+        ? member.invoices.some((invoice) => invoice.status === invoiceStatus)
+        : true;
+
+      // Search by name
       const matchesSearch = member.name
         .toLowerCase()
         .includes(this.searchTerm.toLowerCase());
+
+      // Final check for all conditions
       return (
         matchesStatus &&
         matchesSubscription &&
-        matchesSearch &&
-        matchesPaidInvoice &&
-        matchesUnpaidInvoice
+        matchesInvoiceStatus &&
+        matchesSearch
       );
     });
   }
@@ -72,11 +75,17 @@ export class MemberListComponent {
     this.applyFilters();
   }
 
-  // Handle the change in the dropdown selection
+  // Handle the change in filter options (checkbox or dropdown)
   onFilterChange(type: string, event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    this.activeFilters[type] = target.value;
+    const target = event.target as HTMLInputElement;
+    this.activeFilters[type] = target.value || undefined; // Remove filter if value is empty
     this.applyFilters();
+  }
+
+  // Handle checkbox change for filter options
+  onCheckboxChange(type: string, event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.activeFilters[type] = target.checked ? target.value : undefined;
   }
 
   // Clear a specific filter
@@ -88,6 +97,14 @@ export class MemberListComponent {
   // Clear all filters
   clearAllFilters(): void {
     this.activeFilters = {};
+    this.searchTerm = ''; // Also clear the search term
     this.applyFilters();
+    this.toggleFilterPanel();
+  }
+
+  // Toggle filter panel visibility
+  toggleFilterPanel(): void {
+    this.applyFilters();
+    this.isFilterPanelOpen = !this.isFilterPanelOpen;
   }
 }
