@@ -88,28 +88,23 @@
       </div>
     </li>
   </ul> -->
-
-  <ul>
+  <div class="main-content">
     <ul>
       <li *ngFor="let member of filteredMembers">
         <a [routerLink]="['/member', member.id]">{{ member.name }}</a>
+
+        <div class="status">
+          <span
+            [ngClass]="{
+              active: member.membershipStatus === 'Active',
+              inactive: member.membershipStatus === 'Inactive',
+              suspended: member.membershipStatus === 'Suspended'
+            }"
+          >
+            {{ member.membershipStatus }}
+          </span>
+        </div>
       </li>
     </ul>
-    <!-- <li *ngFor="let member of filteredMembers">
-      <a [routerLink]="['/members', { outlets: { detail: [member.id] } }]">{{
-        member.name
-      }}</a>
-
-      <div class="status">
-        <span
-          [ngClass]="{
-            active: member.membershipStatus === 'Active',
-            inactive: member.membershipStatus === 'Inactive'
-          }"
-        >
-          {{ member.membershipStatus }}
-        </span>
-      </div>
-    </li> -->
-  </ul>
+  </div>
 </div>

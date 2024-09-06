@@ -1,24 +1,30 @@
 <div class="container">
   <aside class="sidebar">
+    <!-- Logo section -->
+    <div class="logo">
+      <h1>Dashboard</h1>
+    </div>
+
     <nav>
       <ul>
-        <li><a routerLink="/members">Member List</a></li>
+        <li>
+          <a routerLink="/members">
+            <i class="fas fa-users"></i> Member List
+          </a>
+        </li>
+        <li>
+          <a routerLink="/invoices">
+            <i class="fas fa-file-invoice-dollar"></i> Invoices
+          </a>
+        </li>
+        <li>
+          <a routerLink="/settings"> <i class="fas fa-cog"></i> Settings </a>
+        </li>
       </ul>
     </nav>
   </aside>
 
   <main class="main-content">
-    <div class="left-side">
-      <router-outlet></router-outlet>
-      <!-- Primary outlet for MemberListComponent -->
-    </div>
-
-    <div class="right-side">
-      <!-- <router-outlet name="details"></router-outlet> -->
-      <!-- Named outlet for MemberDetailComponent -->
-      <div class="center-align">
-        <p>Select a user to check their details</p>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </main>
 </div>

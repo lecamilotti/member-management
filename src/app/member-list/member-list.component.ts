@@ -13,9 +13,11 @@ import { RouterModule } from '@angular/router'; // For routerLink
   styleUrls: ['./member-list.component.css'],
 })
 export class MemberListComponent {
+  [x: string]: any | string;
   members: Member[] = [];
   filteredMembers: Member[] = [];
   searchTerm: string = '';
+
 
   // Filter options for membership status and subscription type
   filterOptions = {
@@ -26,6 +28,8 @@ export class MemberListComponent {
 
   // Active filters
   activeFilters: { [key: string]: string | undefined } = {};
+  details: any | string;
+  outlets: any | string;
 
   constructor(private memberService: MemberService) {
     this.members = this.memberService.getMembers();

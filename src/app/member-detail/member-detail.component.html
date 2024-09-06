@@ -1,16 +1,35 @@
+<button class="back-button" routerLink="/members">
+  <i class="fas fa-arrow-left"></i> Back to List
+</button>
 <div class="member-info">
-  <h2>{{ member?.name }}</h2>
-  <p><strong>Email:</strong> {{ member?.email }}</p>
-  <p><strong>Membership Status:</strong> {{ member?.membershipStatus }}</p>
-  <p><strong>Subscription Type:</strong> {{ member?.subscriptionType }}</p>
-  <p><strong>Join Date:</strong> {{ member?.joinDate }}</p>
+  <!-- Back to List Button -->
+
+  <div class="header">
+    <h2>{{ member?.name }}</h2>
+    <span class="join-date">Client since: {{ member?.joinDate }}</span>
+  </div>
+
+  <div class="info-row">
+    <div class="left">
+      <p><i class="fas fa-envelope"></i> {{ member?.email }}</p>
+      <p><i class="fas fa-id-card"></i> {{ member?.cpr }}</p>
+      <p><i class="fas fa-home"></i> {{ member?.address }}</p>
+    </div>
+
+    <div class="right">
+      <p><i class="fas fa-user"></i> {{ member?.membershipStatus }}</p>
+      <p><i class="fas fa-credit-card"></i> {{ member?.subscriptionType }}</p>
+    </div>
+  </div>
 
   <div class="invoice-list">
     <h3>Invoices</h3>
     <div *ngFor="let invoice of member?.invoices" class="invoice-item">
       <div>
-        <p><strong>Date:</strong> {{ invoice.date }}</p>
-        <p><strong>Amount:</strong> ${{ invoice.amount }}</p>
+        <p class="date"><strong>Date:</strong> {{ invoice.date }}</p>
+        <p class="amount">
+          <strong>Amount:</strong> {{ invoice.amount }},00 dkk
+        </p>
       </div>
       <span
         class="status"

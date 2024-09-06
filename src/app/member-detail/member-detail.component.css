@@ -1,24 +1,87 @@
-/* src/app/member-detail/member-detail.component.css */
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
 .member-info {
-  width: 100%;
   padding: 1.5rem;
+  height: 100vh;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.member-info p {
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
+/* Back Button */
+.back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 20px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.back-button i {
+  margin-right: 0.5rem;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.join-date {
+  background-color: #f1f1f1; /* Background color for join date */
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem; /* Smaller font size for the join date */
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.left,
+.right {
+  flex: 1; /* Flex grow for both left and right sections */
+  display: flex;
+  flex-direction: column;
+}
+
+.left p,
+.right p {
+  margin: 0.5rem 0; /* Space between rows */
+  font-size: 1rem;
+}
+
+.left i,
+.right i {
+  margin-right: 0.5rem; /* Space between icon and text */
 }
 
 .invoice-list {
   margin-top: 2rem;
+}
+
+.date {
+  font-size: 1rem; /* Smaller font size for the date */
+  margin-bottom: 1rem;
+  color: dimgray;
+}
+
+.amount {
+  font-size: 1.1rem; /* Smaller font size for the amount */
+  font-weight: bold; /* Bold font weight for the amount */
 }
 
 .invoice-list h3 {
@@ -26,7 +89,7 @@ h2 {
 }
 
 .invoice-item {
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #f9f9f9;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -55,12 +118,4 @@ h2 {
 .invoice-item .status.unpaid {
   background-color: #dc3545;
   color: white;
-}
-
-.main-content {
-  display: flex;
-}
-
-.member-detail {
-  margin-left: auto;
 }

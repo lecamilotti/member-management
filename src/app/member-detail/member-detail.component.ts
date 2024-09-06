@@ -18,10 +18,13 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private memberService: MemberService
-  ) {}
+  ) {
+    console.log('MemberDetailComponent constructor called');
+  }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    console.log('MemberDetailComponent ngOnInit called with id:', id);
     this.member = this.memberService.getMemberById(id);
   }
 }

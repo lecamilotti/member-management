@@ -1,10 +1,11 @@
 /* src/app/member-list/member-list.component.css */
 .main-container {
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
   padding: 2rem;
   background-color: #f8f9fa;
-  overflow: scroll;
-  max-height: 96.1vh;
 }
 h2 {
   font-size: 2rem;
@@ -63,6 +64,9 @@ ul {
 }
 
 ul li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 1.2rem;
 }
 
@@ -86,6 +90,48 @@ ul li {
 
 ul li:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: space-between;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-items: flex-end;
+
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.status .active {
+  padding: 0.4rem;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+}
+
+.status .suspended {
+  padding: 0.4rem;
+  border-radius: 4px;
+  background-color: #ffc107;
+  color: white;
+}
+
+.status .inactive {
+  padding: 0.4rem;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
 }
 
 .clear-filters {
