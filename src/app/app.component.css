@@ -1,0 +1,32 @@
+/* src/app/app.component.css */
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #16384b;
+  padding: 1rem;
+  color: white;
+}
+
+.main-content {
+  display: flex;
+  flex: 1; /* Take remaining space */
+}
+
+.left-side {
+  flex: 2; /* Adjust left side to take more space */
+  padding: 1rem; /* Optional: Add padding */
+  max-width: 500px;
+}
+
+.right-side {
+  flex: 1;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: block; /* Make sure it's not hidden */
+}

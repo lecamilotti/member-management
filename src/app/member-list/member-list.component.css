@@ -1,0 +1,103 @@
+/* src/app/member-list/member-list.component.css */
+.main-container {
+  max-width: 800px;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  overflow: scroll;
+  max-height: 96.1vh;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+input,
+select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+}
+
+input {
+  width: 100%;
+}
+
+select {
+  width: calc(100% - 0.6rem);
+}
+
+.active-filters {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.active-filters span {
+  background-color: #e0e0e0;
+  padding: 0.6rem 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.active-filters button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  margin-left: 0.6rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.active-filters button:hover {
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin-bottom: 1.2rem;
+}
+
+ul li a {
+  font-size: 1.1rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+ul li {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+ul li:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.clear-filters {
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.clear-filters:hover {
+  background-color: #0056b3;
+}

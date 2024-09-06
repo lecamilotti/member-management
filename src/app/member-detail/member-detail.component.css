@@ -1,0 +1,66 @@
+/* src/app/member-detail/member-detail.component.css */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.member-info {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-info p {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.invoice-list {
+  margin-top: 2rem;
+}
+
+.invoice-list h3 {
+  margin-bottom: 1rem;
+}
+
+.invoice-item {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-item .status {
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.invoice-item .status.paid {
+  background-color: #28a745;
+  color: white;
+}
+
+.invoice-item .status.pending {
+  background-color: #ffc107;
+  color: white;
+}
+
+.invoice-item .status.unpaid {
+  background-color: #dc3545;
+  color: white;
+}
+
+.main-content {
+  display: flex;
+}
+
+.member-detail {
+  margin-left: auto;
+}

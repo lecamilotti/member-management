@@ -1,0 +1,115 @@
+<!-- src/app/member-list/member-list.component.html -->
+<div class="main-container">
+  <h2>Member Directory</h2>
+
+  <!-- Search box -->
+  <input
+    type="text"
+    placeholder="Search by name"
+    (input)="onSearchChange($event)"
+    [(ngModel)]="searchTerm"
+  />
+
+  <!-- Filter by membership status dropdown -->
+  <label for="membershipStatus">Filter by Membership Status:</label>
+  <select
+    id="membershipStatus"
+    (change)="onFilterChange('membershipStatus', $event)"
+  >
+    <option value="">All</option>
+    <option
+      *ngFor="let status of filterOptions.membershipStatus"
+      [value]="status"
+    >
+      {{ status }}
+    </option>
+  </select>
+
+  <!-- Filter by subscription type dropdown -->
+  <label for="subscriptionType">Filter by Subscription Type:</label>
+  <select
+    id="subscriptionType"
+    (change)="onFilterChange('subscriptionType', $event)"
+  >
+    <option value="">All</option>
+    <option *ngFor="let type of filterOptions.subscriptionType" [value]="type">
+      {{ type }}
+    </option>
+  </select>
+  <Label for="invoiceStatus">Filter by Invoice Status:</Label>
+  <select id="invoiceStatus" (change)="onFilterChange('invoiceStatus', $event)">
+    <option value="">All</option>
+    <option *ngFor="let status of filterOptions.invoiceStatus" [value]="status">
+      {{ status }}
+    </option>
+  </select>
+
+  <!-- Display active filters as tags -->
+  <div
+    *ngIf="
+      activeFilters['membershipStatus'] ||
+      activeFilters['subscriptionType'] ||
+      activeFilters['searchTerm'] ||
+      activeFilters['invoiceStatus']
+    "
+    class="active-filters"
+  >
+    <span *ngIf="activeFilters['membershipStatus']">
+      Membership Status: {{ activeFilters["membershipStatus"] }}
+      <button (click)="clearFilter('membershipStatus')">x</button>
+    </span>
+    <span *ngIf="activeFilters['subscriptionType']">
+      Subscription Type: {{ activeFilters["subscriptionType"] }}
+      <button (click)="clearFilter('subscriptionType')">x</button>
+    </span>
+    <span *ngIf="activeFilters['searchTerm']">
+      Search Term: {{ activeFilters["searchTerm"] }}
+      <button (click)="clearFilter('searchTerm')">x</button>
+    </span>
+    <span *ngIf="activeFilters['invoiceStatus']">
+      Invoice Status: {{ activeFilters["invoiceStatus"] }}
+      <button (click)="clearFilter('invoiceStatus')">x</button>
+    </span>
+    <button (click)="clearAllFilters()">Clear All</button>
+  </div>
+
+  <!-- Filtered member list -->
+  <!-- <ul>
+    <li *ngFor="let member of filteredMembers">
+      <a [routerLink]="[member.id]">{{ member.name }}</a>
+      <div class="status">
+        <span
+          [ngClass]="{
+            active: member.membershipStatus === 'Active',
+            inactive: member.membershipStatus === 'Inactive'
+          }"
+          >{{ member.membershipStatus }}</span
+        >
+      </div>
+    </li>
+  </ul> -->
+
+  <ul>
+    <ul>
+      <li *ngFor="let member of filteredMembers">
+        <a [routerLink]="['/member', member.id]">{{ member.name }}</a>
+      </li>
+    </ul>
+    <!-- <li *ngFor="let member of filteredMembers">
+      <a [routerLink]="['/members', { outlets: { detail: [member.id] } }]">{{
+        member.name
+      }}</a>
+
+      <div class="status">
+        <span
+          [ngClass]="{
+            active: member.membershipStatus === 'Active',
+            inactive: member.membershipStatus === 'Inactive'
+          }"
+        >
+          {{ member.membershipStatus }}
+        </span>
+      </div>
+    </li> -->
+  </ul>
+</div>

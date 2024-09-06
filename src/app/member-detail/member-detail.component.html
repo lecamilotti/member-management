@@ -1,0 +1,26 @@
+<div class="member-info">
+  <h2>{{ member?.name }}</h2>
+  <p><strong>Email:</strong> {{ member?.email }}</p>
+  <p><strong>Membership Status:</strong> {{ member?.membershipStatus }}</p>
+  <p><strong>Subscription Type:</strong> {{ member?.subscriptionType }}</p>
+  <p><strong>Join Date:</strong> {{ member?.joinDate }}</p>
+
+  <div class="invoice-list">
+    <h3>Invoices</h3>
+    <div *ngFor="let invoice of member?.invoices" class="invoice-item">
+      <div>
+        <p><strong>Date:</strong> {{ invoice.date }}</p>
+        <p><strong>Amount:</strong> ${{ invoice.amount }}</p>
+      </div>
+      <span
+        class="status"
+        [ngClass]="{
+          paid: invoice.status === 'Paid',
+          pending: invoice.status === 'Pending',
+          unpaid: invoice.status === 'Unpaid'
+        }"
+        >{{ invoice.status }}</span
+      >
+    </div>
+  </div>
+</div>
