@@ -8,36 +8,3 @@ export const appRoutes: Routes = [
   { path: 'members', component: MemberListComponent }, // Member List route
   { path: 'member/:id', component: MemberDetailComponent }, // Member Detail route
 ];
-
-// export const appRoutes: Routes = [
-//   { path: '', redirectTo: '/members', pathMatch: 'full' },
-//   {
-//     path: 'members',
-//     component: MemberListComponent,
-//     children: [
-//       {
-//         path: ':id',
-//         component: MemberDetailComponent,
-//         outlet: 'detail', // Named outlet for the detail component
-//       },
-//     ],
-//   },
-// ];
-// export const appRoutes: Routes = [
-//   { path: '', redirectTo: '/members', pathMatch: 'full' },
-//   {
-//     path: 'members',
-//     component: MemberListComponent,
-//     children: [
-//       {
-//         path: ':id',
-//         loadComponent() {
-//           return import('./member-detail/member-detail.component').then(
-//             (module) => module.MemberDetailComponent
-//           );
-//         },
-//         outlet: 'details', // Named outlet for the detail component
-//       },
-//     ],
-//   },
-// ];

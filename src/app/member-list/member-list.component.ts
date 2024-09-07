@@ -91,7 +91,7 @@ export class MemberListComponent {
   // Clear a specific filter
   clearFilter(type: string): void {
     delete this.activeFilters[type];
-    this.applyFilters();
+    this.isFilterPanelOpen = false; // Close the filter panel
   }
 
   // Clear all filters
@@ -99,7 +99,7 @@ export class MemberListComponent {
     this.activeFilters = {};
     this.searchTerm = ''; // Also clear the search term
     this.applyFilters();
-    this.toggleFilterPanel();
+    this.isFilterPanelOpen = false; // Close the filter panel
   }
 
   // Toggle filter panel visibility

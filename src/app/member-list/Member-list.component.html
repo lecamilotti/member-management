@@ -21,7 +21,7 @@
       <label>Filter by Membership Status:</label>
       <div *ngFor="let status of filterOptions.membershipStatus">
         <input
-        class="checkbox"
+          class="checkbox"
           type="checkbox"
           [value]="status"
           (change)="onCheckboxChange('membershipStatus', $event)"
@@ -32,7 +32,7 @@
       <label>Filter by Subscription Type:</label>
       <div *ngFor="let type of filterOptions.subscriptionType">
         <input
-        class="checkbox"
+          class="checkbox"
           type="checkbox"
           [value]="type"
           (change)="onCheckboxChange('subscriptionType', $event)"
@@ -43,7 +43,7 @@
       <label>Filter by Invoice Status:</label>
       <div *ngFor="let status of filterOptions.invoiceStatus">
         <input
-        class="checkbox"
+          class="checkbox"
           type="checkbox"
           [value]="status"
           (change)="onCheckboxChange('invoiceStatus', $event)"
@@ -53,7 +53,7 @@
 
       <div class="filter-buttons">
         <button (click)="toggleFilterPanel()">Search</button>
-        <button (click)="clearAllFilters()">Clear</button>
+        <button (click)="clearAllFilters()">close</button>
       </div>
     </div>
   </div>
